@@ -67,3 +67,26 @@ venv.bak/
 Thumbs.db
 .neon
 node_modules/
+
+# Entornos virtuales y archivos de Python
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+
+# Dependencias y build de React / Vite
+node_modules/
+dist/
+.vite/
+
+# Variables de entorno (claves secretas)
+.env
+.env.local
+
+# Archivos del sistema / editor
+.DS_Store
+.vscode/
