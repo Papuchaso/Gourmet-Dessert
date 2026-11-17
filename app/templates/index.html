@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gourmet Dessert | Postres Engaña-Ojos & Melería IRESM</title>
+  <meta name="description" content="Gourmet Dessert: E-commerce oficial de postres engaña-ojos y chucherías dulces para la comunidad estudiantil del Instituto Remedios Escalada de San Martín (IRESM).">
+  
+  <!-- Google Fonts: Fredoka & Quicksand -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Estilos CSS Melería Pastel -->
+  <link rel="stylesheet" href="/static/css/styles.css?v=2.1">
+</head>
+<body>
+
+  <!-- NAVBAR / HEADER -->
+  <header class="header">
+    <div class="nav-container container">
+      <a href="/" class="logo-brand" id="brand-logo">
+        <div class="logo-icon">🍯</div>
+        <div class="logo-text-box">
+          <h1>Gourmet Dessert</h1>
+          <span>Postres Engaña-Ojos & Melería</span>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <a href="https://iresm.edu.ar/" target="_blank" rel="noopener noreferrer" class="badge-iresm" title="Visitar Instituto Remedios Escalada de San Martín (IRESM)">
+          <span>🎓</span> IRESM Oficial
+        </a>
+
+        <!-- Botón para usuarios no autenticados -->
+        <button type="button" class="btn-auth-login" id="btn-open-auth" aria-label="Iniciar Sesión o Registrarse">
+          <span>✨</span> Ingresar
+        </button>
+
+        <!-- Menú de Usuario Autenticado (Oculto por defecto hasta validar sesión) -->
+        <div class="user-menu-wrapper" id="user-menu-wrapper" style="display: none;">
+          <button class="user-menu-btn" id="user-menu-btn" aria-haspopup="true" aria-expanded="false" aria-label="Menú de Usuario">
+            <img src="" alt="Avatar" class="user-avatar-header" id="header-user-avatar">
+            <span class="user-name-header" id="header-user-name">Usuario</span>
+            <span class="dropdown-arrow">▼</span>
+          </button>
+
+          <!-- Dropdown Desplegable -->
+          <div class="user-dropdown" id="user-dropdown">
+            <div class="dropdown-header">
+              <span class="dropdown-user-name" id="dropdown-user-name">Usuario</span>
+              <span class="dropdown-user-email" id="dropdown-user-email">usuario@iresm.edu.ar</span>
+              <span class="dropdown-user-badge" id="dropdown-user-role">Cliente</span>
+            </div>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" id="dropdown-btn-settings">
+              <span class="icon">⚙️</span> Configuración de Cuenta
+            </button>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item item-logout" id="dropdown-btn-logout">
+              <span class="icon">🚪</span> Cerrar Sesión
+            </button>
+          </div>
+        </div>
+
+        <!-- Botón de Carrito -->
+        <button class="btn-cart" id="cart-btn" aria-label="Ver Carrito">
+          🛒
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO BIENVENIDA -->
+    <section class="hero-welcome">
+      <div class="container">
+        <span class="tag-sweet">✨ ¡Postres que parecen comidas saladas! ✨</span>
+        <h2>Dulcería & Melería <span>Gourmet Dessert</span></h2>
+        <p>Pedí tu chuchera preferida, sacale una foto para las redes y compartí la ilusión en el IRESM. ¡Sabor irresistible y precios súper accesibles!</p>
+      </div>
+    </section>
+
+    <!-- SECCIÓN CÁMARA / VITRINA DESTACADA (CARROUSEL) -->
+    <section class="featured-section container">
+      <div class="showcase-container">
+        <div class="showcase-header-badge">⭐ Postre Destacado ⭐</div>
+
+        <!-- Caja Principal con Flechas < e Imagen Clickeable e Imagen > -->
+        <div class="showcase-box-wrapper">
+          <!-- Flecha Izquierda < -->
+          <button class="arrow-btn" id="btn-prev" aria-label="Producto Anterior">&lt;</button>
+
+          <!-- Marco de Imagen Clickeable -->
+          <div class="display-image-frame" id="display-img-frame" title="¡Haz clic para ver más detalles!">
+            <img src="" alt="Cargando postre..." id="display-img">
+            <div class="click-hint-overlay">
+              <span class="icon">🔍</span>
+              <span>¡Haz clic para ver detalle!</span>
+            </div>
+          </div>
+
+          <!-- Flecha Derecha > -->
+          <button class="arrow-btn" id="btn-next" aria-label="Producto Siguiente">&gt;</button>
+        </div>
+
+        <!-- Precio y Detalles Debajo de la Imagen -->
+        <div class="showcase-details">
+          <h3 class="showcase-title" id="display-title">Cargando...</h3>
+          <p class="showcase-subtitle" id="display-subtitle">Cargando descripción...</p>
+          
+          <div class="showcase-price-tag">
+            <span class="label">Precio Estudiantil:</span>
+            <span class="amount" id="display-price">$ 0</span>
+          </div>
+
+          <!-- Puntos indicadores del carrusel -->
+          <div class="showcase-dots" id="showcase-dots"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN "PRODUCTOS" (GRID COMPLETO) -->
+    <section class="products-section" id="seccion-productos">
+      <div class="container">
+        <div class="section-header">
+          <h2>Productos</h2>
+          <p style="color: var(--text-muted); margin-top: 6px;">Descubrí toda nuestra variedad de engaña-ojos y chucherías para el IRESM</p>
+        </div>
+
+        <div class="products-grid" id="products-grid">
+          <!-- Tarjetas dinámicas renderizadas desde JS -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CART DRAWER / CARRITO DESLIZABLE -->
+  <div class="cart-drawer-overlay" id="cart-drawer-overlay">
+    <aside class="cart-drawer" id="cart-drawer">
+      <div class="cart-drawer-header">
+        <h3>🛒 Tu Carrito Gourmet</h3>
+        <button class="cart-drawer-close" id="cart-drawer-close" aria-label="Cerrar carrito">&times;</button>
+      </div>
+
+      <div class="cart-drawer-body" id="cart-drawer-body">
+        <div class="cart-items-list" id="cart-items-list">
+          <!-- Ítems dinámicos del carrito -->
+        </div>
+      </div>
+
+      <div class="cart-drawer-footer">
+        <div class="cart-total-row">
+          <span>Total a Pagar:</span>
+          <span class="cart-total-price" id="cart-total-price">$ 0</span>
+        </div>
+        <div class="cart-actions-row">
+          <button class="btn-clear-cart" id="btn-clear-cart">🗑️ Vaciar</button>
+          <button class="btn-checkout" id="btn-checkout">🛍️ Finalizar Pedido</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- MODAL DE CHECKOUT / CONFIRMACIÓN -->
+  <div class="modal-overlay" id="checkout-modal-overlay">
+    <div class="modal-card checkout-card">
+      <button class="modal-close-btn" id="checkout-close-btn" aria-label="Cerrar modal">&times;</button>
+      <div class="checkout-header">
+        <span style="font-size: 2.5rem;">🎉</span>
+        <h2>¡Pedido Confirmado!</h2>
+        <p>Gracias por comprar en Gourmet Dessert para IRESM</p>
+      </div>
+      <div class="checkout-body" id="checkout-summary-body">
+        <!-- Resumen dinámico -->
+      </div>
+      <div class="checkout-footer">
+        <button class="btn-modal-buy" id="btn-finish-order">✨ Entendido / Realizar Nuevo Pedido</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE DETALLE DE PRODUCTO -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Cerrar modal">&times;</button>
+      <div class="modal-img-container">
+        <img src="" alt="" id="modal-img">
+      </div>
+      <div class="modal-body">
+        <span class="modal-badge" id="modal-badge">Categoría</span>
+        <h2 class="modal-title" id="modal-title">Título del Producto</h2>
+        <p class="modal-desc" id="modal-desc">Descripción completa del producto...</p>
+
+        <div class="modal-footer">
+          <div class="modal-price" id="modal-price">$ 0</div>
+          <button class="btn-modal-buy" id="btn-modal-buy">🛒 Agregar al Carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE AUTENTICACIÓN (LOGIN / REGISTRO) - AUTH GUARD -->
+  <div class="modal-overlay" id="auth-modal-overlay">
+    <div class="modal-card auth-modal-card">
+      <button class="modal-close-btn" id="auth-close-btn" aria-label="Cerrar modal">&times;</button>
+      
+      <div class="auth-header">
+        <div class="auth-icon-badge">🍯</div>
+        <h2 id="auth-modal-title">¡Bienvenido a Gourmet Dessert!</h2>
+        <p id="auth-modal-subtitle">Iniciá sesión o registrate para acceder al catálogo y pedir tus postres engaña-ojos.</p>
+      </div>
+
+      <!-- Pestañas de Login / Registro -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-login" type="button">Iniciar Sesión</button>
+        <button class="auth-tab" id="tab-register" type="button">Crear Cuenta</button>
+      </div>
+
+      <!-- Botón de Google OAuth -->
+      <div class="oauth-section">
+        <button type="button" class="btn-google-auth" id="btn-google-login">
+          <svg class="google-icon" width="20" height="20" viewBox="0 0 48 48">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+            <path fill="none" d="M0 0h48v48H0z"/>
+          </svg>
+          <span>Continuar con Google</span>
+        </button>
+        <div id="g_id_onload"></div>
+        <div class="oauth-divider">
+          <span>o con tu correo y contraseña</span>
+        </div>
+      </div>
+
+      <!-- Formulario Iniciar Sesión -->
+      <form class="auth-form" id="form-login">
+        <div class="form-group">
+          <label for="login-email">Correo Electrónico</label>
+          <div class="input-wrapper">
+            <span class="input-icon">✉️</span>
+            <input type="email" id="login-email" placeholder="tu.nombre@iresm.edu.ar" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <label for="login-password" style="margin-bottom: 0;">Contraseña</label>
+            <button type="button" id="btn-open-recovery" style="background: none; border: none; color: #f59e0b; font-size: 0.8rem; cursor: pointer; text-decoration: underline; padding: 0;">¿Olvidaste tu contraseña?</button>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-icon">🔒</span>
+            <input type="password" id="login-password" placeholder="Tu contraseña secreta" required autocomplete="current-password">
+            <button type="button" class="btn-toggle-pwd" data-target="login-password" aria-label="Ver u ocultar contraseña">👁️</button>
+          </div>
+        </div>
+
+        <div class="auth-alert error" id="login-error" style="display: none;"></div>
+
+        <button type="submit" class="btn-auth-submit" id="btn-submit-login">
+          <span>🚀</span> Iniciar Sesión
+        </button>
+      </form>
+
+      <!-- Formulario Recuperar Contraseña -->
+      <form class="auth-form" id="form-recovery" style="display: none;">
+        <div class="form-group">
+          <label for="recovery-email">Correo Electrónico Registrado</label>
+          <div class="input-wrapper">
+            <span class="input-icon">✉️</span>
+            <input type="email" id="recovery-email" placeholder="ejemplo@iresm.edu.ar" required autocomplete="email">
+          </div>
+          <small class="form-hint">Te enviaremos las instrucciones de recuperación si la cuenta existe.</small>
+        </div>
+
+        <div class="auth-alert error" id="recovery-error" style="display: none;"></div>
+        <div class="auth-alert success" id="recovery-success" style="display: none;"></div>
+
+        <button type="submit" class="btn-auth-submit" id="btn-submit-recovery">
+          <span>📩</span> Enviar Instrucciones
+        </button>
+        <button type="button" class="btn-secondary-save" id="btn-cancel-recovery" style="width: 100%; margin-top: 10px; background: #334155;">
+          ← Volver a Iniciar Sesión
+        </button>
+      </form>
+
+      <!-- Formulario Crear Cuenta -->
+      <form class="auth-form" id="form-register" style="display: none;">
+        <div class="form-group">
+          <label for="reg-nombre">Nombre y Apellido</label>
+          <div class="input-wrapper">
+            <span class="input-icon">👤</span>
+            <input type="text" id="reg-nombre" placeholder="Ej: Santiago Giménez" required autocomplete="name">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-email">Correo Electrónico</label>
+          <div class="input-wrapper">
+            <span class="input-icon">✉️</span>
+            <input type="email" id="reg-email" placeholder="ejemplo@iresm.edu.ar" required autocomplete="email">
+          </div>
+          <small class="form-hint">✨ Tu avatar inicial se generará automáticamente con las iniciales de tu nombre.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-password">Contraseña</label>
+          <div class="input-wrapper">
+            <span class="input-icon">🔒</span>
+            <input type="password" id="reg-password" placeholder="Mínimo 6 caracteres" required minlength="6" autocomplete="new-password">
+            <button type="button" class="btn-toggle-pwd" data-target="reg-password" aria-label="Ver u ocultar contraseña">👁️</button>
+          </div>
+        </div>
+
+        <div class="form-checkbox-group">
+          <input type="checkbox" id="reg-consent" required>
+          <label for="reg-consent">
+            Acepto los términos de tratamiento de datos personales conforme a la <strong>Ley N° 24.240</strong> de Defensa del Consumidor.
+          </label>
+        </div>
+
+        <div class="auth-alert error" id="reg-error" style="display: none;"></div>
+        <div class="auth-alert success" id="reg-success" style="display: none;"></div>
+
+        <button type="submit" class="btn-auth-submit" id="btn-submit-register">
+          <span>🎉</span> Registrarse y Entrar
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL DE PANEL DE CONFIGURACIÓN DE PERFIL -->
+  <div class="modal-overlay" id="profile-modal-overlay">
+    <div class="modal-card profile-modal-card">
+      <button class="modal-close-btn" id="profile-close-btn" aria-label="Cerrar modal">&times;</button>
+      
+      <div class="profile-header">
+        <h2>⚙️ Configuración de Cuenta</h2>
+        <p>Administrá tus datos, foto de perfil, credenciales y preferencias de seguridad.</p>
+      </div>
+
+      <div class="profile-body">
+        <!-- Sección 1: Datos de Usuario y Foto de Perfil -->
+        <section class="profile-section card-style">
+          <div class="profile-section-title">
+            <span>🖼️</span>
+            <h3>Foto de Perfil & Datos de Cuenta</h3>
+          </div>
+
+          <div class="profile-user-card">
+            <div class="profile-avatar-container">
+              <img src="" alt="Foto de Perfil" id="profile-avatar-preview" class="profile-avatar-large">
+              <span class="profile-role-badge" id="profile-role-badge">Cliente</span>
+            </div>
+            
+            <div class="profile-details-grid">
+              <div class="profile-detail-item">
+                <span class="detail-label">Nombre Completo:</span>
+                <span class="detail-value" id="profile-user-name">-</span>
+              </div>
+              <div class="profile-detail-item">
+                <span class="detail-label">Correo Electrónico Asociado:</span>
+                <span class="detail-value" id="profile-user-email">-</span>
+              </div>
+              <div class="profile-detail-item">
+                <span class="detail-label">Fecha de Registro:</span>
+                <span class="detail-value" id="profile-user-date">-</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Selector y Actualizador de Foto de Perfil -->
+          <div class="profile-photo-manager">
+            <h4>Cambiar Foto de Perfil:</h4>
+            
+            <div class="upload-avatar-box">
+              <input type="file" id="input-avatar-file" accept="image/png, image/jpeg, image/webp, image/gif, image/svg+xml" style="display: none;">
+              <button type="button" class="btn-upload-avatar" id="btn-select-avatar-file">
+                <span>📁</span> Subir imagen desde tu equipo
+              </button>
+              <button type="button" class="btn-restore-initials" id="btn-restore-initials">
+                <span>🔤</span> Usar mis iniciales
+              </button>
+            </div>
+
+            <!-- O ingresar enlace URL -->
+            <form id="form-update-photo" class="photo-url-form" style="margin-top: 14px;">
+              <div class="input-wrapper">
+                <span class="input-icon">🔗</span>
+                <input type="url" id="input-photo-url" placeholder="O pega una URL de imagen (ej. https://...)">
+              </div>
+              <button type="submit" class="btn-secondary-save" id="btn-save-photo">Guardar Enlace</button>
+            </form>
+
+            <div class="auth-alert success" id="photo-success" style="display: none;"></div>
+            <div class="auth-alert error" id="photo-error" style="display: none;"></div>
+          </div>
+        </section>
+
+        <!-- Sección 2: Seguridad (Cambio de Contraseña Seguro) -->
+        <section class="profile-section card-style">
+          <div class="profile-section-title">
+            <span>🔒</span>
+            <h3>Seguridad y Contraseña</h3>
+          </div>
+
+          <form id="form-change-password" class="password-change-form">
+            <div class="form-group">
+              <label for="pwd-actual">Contraseña Actual</label>
+              <div class="input-wrapper">
+                <span class="input-icon">🔑</span>
+                <input type="password" id="pwd-actual" placeholder="Tu contraseña actual" required autocomplete="current-password">
+                <button type="button" class="btn-toggle-pwd" data-target="pwd-actual" aria-label="Ver u ocultar contraseña">👁️</button>
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="pwd-nueva">Nueva Contraseña</label>
+                <div class="input-wrapper">
+                  <span class="input-icon">🔒</span>
+                  <input type="password" id="pwd-nueva" placeholder="Mínimo 6 caracteres" required minlength="6" autocomplete="new-password">
+                  <button type="button" class="btn-toggle-pwd" data-target="pwd-nueva" aria-label="Ver u ocultar contraseña">👁️</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="pwd-confirm">Confirmar Nueva Contraseña</label>
+                <div class="input-wrapper">
+                  <span class="input-icon">✅</span>
+                  <input type="password" id="pwd-confirm" placeholder="Repite la nueva contraseña" required minlength="6" autocomplete="new-password">
+                  <button type="button" class="btn-toggle-pwd" data-target="pwd-confirm" aria-label="Ver u ocultar contraseña">👁️</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="auth-alert success" id="pwd-success" style="display: none;"></div>
+            <div class="auth-alert error" id="pwd-error" style="display: none;"></div>
+
+            <button type="submit" class="btn-secondary-save" id="btn-save-password">
+              <span>🔐</span> Actualizar Contraseña
+            </button>
+          </form>
+        </section>
+
+        <!-- Sección 3: Zona de Peligro (Eliminar Cuenta) -->
+        <section class="profile-section card-style danger-zone">
+          <div class="profile-section-title danger-title">
+            <span>⚠️</span>
+            <h3>Zona de Peligro</h3>
+          </div>
+          <p class="danger-desc">
+            Al eliminar tu cuenta, todos tus datos personales, preferencias e historial de pedidos serán eliminados permanentemente de nuestra base de datos. Esta acción no se puede deshacer.
+          </p>
+          <button type="button" class="btn-danger-delete" id="btn-trigger-delete-account">
+            🗑️ Eliminar Mi Cuenta Permanentemente
+          </button>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE CONFIRMACIÓN PARA ELIMINAR CUENTA -->
+  <div class="modal-overlay" id="confirm-delete-modal-overlay">
+    <div class="modal-card confirm-delete-card">
+      <button class="modal-close-btn" id="confirm-delete-close-btn" aria-label="Cerrar modal">&times;</button>
+      <div class="danger-icon-badge">⚠️</div>
+      <h2>¿Estás completamente seguro?</h2>
+      <p>
+        Esta acción es <strong>irreversible</strong>. Tu cuenta de Gourmet Dessert y todos los datos asociados serán eliminados de forma definitiva.
+      </p>
+      <div class="confirm-actions-row">
+        <button type="button" class="btn-cancel-delete" id="btn-cancel-delete">Cancelar</button>
+        <button type="button" class="btn-confirm-delete" id="btn-confirm-delete">Sí, Eliminar Mi Cuenta</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICACIÓN -->
+  <div class="toast-notification" id="toast-notification">
+    <span style="font-size: 1.3rem;">🎉</span>
+    <span id="toast-message">Producto añadido al carrito</span>
+    <button class="toast-cart-link" id="toast-open-cart">Ver Carrito</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>🍯 Gourmet Dessert</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">
+            Melería & Postres Engaña-Ojos para la comunidad del Instituto Remedios Escalada de San Martín (IRESM).
+          </p>
+        </div>
+        <div class="legal-notice-box">
+          <strong>Aviso de Transparencia y Cumplimiento Legal:</strong><br>
+          Todas las compras, ofertas y entregas realizadas en esta plataforma cumplen rigurosamente con la <strong>Ley N° 24.240 de Defensa del Consumidor</strong> de la República Argentina y normativas sanitarias vigentes.
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Gourmet Dessert - E-Commerce de Postres Engaña-Ojos. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Principal JavaScript -->
+  <script src="/static/js/app.js?v=2.1"></script>
+</body>
+</html>
